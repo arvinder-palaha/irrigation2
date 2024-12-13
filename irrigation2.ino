@@ -1,9 +1,9 @@
 #define LED_BUILTIN 13
 #define PUMP_PIN 2
-#define BUTTON_PIN 3
+#define BUTTON_PIN 12
 #define MOISTURE_PIN A0
-#define READING_INTERVAL_SECONDS 10
-#define READING_COUNT 10
+#define READING_INTERVAL_SECONDS 3
+#define READING_COUNT 3
 #define MOISTURE_THRESHOLD 500
 #define PUMP_DURATION_MILLISECONDS 1000
 
@@ -33,6 +33,7 @@ void loop() {
   // activate pump if button is pressed
   if (digitalRead(BUTTON_PIN) == LOW) {
     activatePump(100);
+    Serial.println("button pressed");
     return;
   }
 
@@ -56,14 +57,6 @@ void loop() {
     }
     lastReadTime = currentTime;
   }
-
-  // digitalWrite(LED_BUILTIN, HIGH);
-  // digitalWrite(PUMP_PIN, HIGH);
-  // delay(READING_INTERVAL_SECONDS * 1000);
-
-  // digitalWrite(LED_BUILTIN, LOW);
-  // digitalWrite(PUMP_PIN, LOW);
-  // delay(READING_INTERVAL_SECONDS * 1000);
 }
 
 void activatePump(int durationMilliSecond) {
